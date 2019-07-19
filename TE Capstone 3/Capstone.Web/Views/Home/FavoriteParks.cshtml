@@ -1,0 +1,25 @@
+﻿@model IList<FavoriteParksVM>
+@{
+    ViewData["Title"] = "FavoriteParks";
+}
+
+<h2>Favorite Parks</h2>
+<div id="fave-parks">
+    <table id="fave-parks-table">
+        <thead>
+            <tr>
+                <td class="fave-park">Park Name</td>
+                <td class="fave-park">Votes</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (FavoriteParksVM vm in Model)
+            {
+                <tr>
+                    <td class="fave-park"><a asp-controller="Home" asp-action="Detail" asp-route-id="@vm.ParkCode">@vm.ParkName</a></td>
+                    <td class="fave-park">@vm.SurveyCount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

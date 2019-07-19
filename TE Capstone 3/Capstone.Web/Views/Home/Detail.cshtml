@@ -1,0 +1,138 @@
+﻿@model DetailViewModel
+@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h2>@Model.ParkDetail.Name</h2>
+
+<div>
+    @{string image = Model.ParkDetail.ParkCode + ".jpg";
+    }
+
+    <div id="park-info-box">
+        <div class="park-info-image">
+            <img src="~/images/parks/@image" />
+        </div>
+        <div class="park-info-bullets">
+            <div>Location: @Model.ParkDetail.State</div>
+            <div>Acreage: @String.Format("{0:n0}", Model.ParkDetail.Acreage)</div>
+            <div>Elevation: @String.Format("{0:n0}", Model.ParkDetail.Elevation) ft.</div>
+            <div>Miles of trail: @String.Format("{0:n0}", Model.ParkDetail.MilesOfTrail)</div>
+            <div>Number of campsites: @String.Format("{0:n0}", Model.ParkDetail.NumberOfCampsites)</div>
+            <div>Number of animal species: @Model.ParkDetail.NumberOfAnimalSpecies</div>
+            <div>Climate: @Model.ParkDetail.Climate</div>
+            <div>Year Founded: @Model.ParkDetail.YearFounded</div>
+            <div>Annual visitor count: @String.Format("{0:n0}", Model.ParkDetail.AnnualVisitorCount)</div>
+            <div>Quote: "@Model.ParkDetail.InspirationalQuote" -- @Model.ParkDetail.IQSource</div>
+            <div>Entry fee: @Model.ParkDetail.EntryFee.ToString("C")</div>
+        </div>
+    </div>
+    <div>@Model.ParkDetail.ParkDescription</div>
+
+    <div class="weather">
+        <div class="today-weather">
+            Today:
+            <img src="~/images/weather/@(Model.Forecasts[0].Weather.Replace(" ", string.Empty)).png" />
+            @{double celciusHigh = (Model.Forecasts[0].High - 32) * 5 / 9; }
+            @{double celciusLow = (Model.Forecasts[0].Low - 32) * 5 / 9; }
+            @if (Model.TemperatureUnit == "Celcius")
+            {
+            <div>High: @(celciusHigh)&deg; C</div>
+            <div>Low: @(celciusLow)&deg; C</div>
+            }
+            else
+            {
+            <div>High: @(Model.Forecasts[0].High)&deg; F</div>
+            <div>Low: @(Model.Forecasts[0].Low)&deg; F</div>
+            }
+
+            <div>
+                @{ switch (Model.Forecasts[0].Weather)
+                    {
+                        case "snow":
+                            <div>Pack your snowshoes!</div>
+                            break;
+                        case "rain":
+                            <div>Pack raingear and wear waterproof shoes!</div>
+                            break;
+                        case "thunderstorms":
+                            <div>Seek shelter and avoid hiking on exposed ridges!</div>
+                            break;
+                        case "sunny":
+                            <div>Pack sunblock!</div>
+                            break;
+                        default:
+                            break;
+                    }
+                    if (Model.Forecasts[0].High > 75)
+                    {
+                        <div>Bring an extra gallon of water!</div>
+                    }
+                    else if (Model.Forecasts[0].High - Model.Forecasts[0].Low > 20)
+                    {
+                        <div>Wear breathable layers!</div>
+                    }
+                    else if (Model.Forecasts[0].Low < 20)
+                    {
+                        <div>Be careful of exposure to frigid temperatures!</div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="future-forecast">
+            <div>Next four days:</div>
+            @for (int i = 1; i < 5; i++)
+            {
+                <div class="future-forecast-detail">
+                    <img class="future-forecast-image" src="~/images/weather/@(Model.Forecasts[i].Weather.Replace(" ", string.Empty)).png" />
+                    @{celciusHigh = (Model.Forecasts[i].High - 32) * 5 / 9; }
+                    @{celciusLow = (Model.Forecasts[i].Low - 32) * 5 / 9; }
+                    @if (Model.TemperatureUnit == "Celcius")
+                    {
+                        <div>High: @(celciusHigh)&deg; C</div>
+                        <div>Low: @(celciusLow)&deg; C</div>
+                    }
+                    else
+                    {
+                        <div>High: @(Model.Forecasts[i].High)&deg; F</div>
+                        <div>Low: @(Model.Forecasts[i].Low)&deg; F</div>
+                    }
+                    @*</div>
+                        <div>*@
+                    @{ switch (Model.Forecasts[i].Weather)
+                        {
+                            case "snow":
+                                <div>Pack your snowshoes!</div>
+                                break;
+                            case "rain":
+                                <div>Pack raingear and wear waterproof shoes!</div>
+                                break;
+                            case "thunderstorms":
+                                <div>Seek shelter and avoid hiking on exposed ridges!</div>
+                                break;
+                            case "sunny":
+                                <div>Pack sunblock!</div>
+                                break;
+                            default:
+                                break;
+                        }
+                        if (Model.Forecasts[i].High > 75)
+                        {
+                            <div>Bring an extra gallon of water!</div>
+                        }
+                        else if (Model.Forecasts[i].High - Model.Forecasts[i].Low > 20)
+                        {
+                            <div>Wear breathable layers!</div>
+                        }
+                        else if (Model.Forecasts[i].Low < 20)
+                        {
+                            <div>Be careful of exposure to frigid temperatures!</div>
+                        }
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

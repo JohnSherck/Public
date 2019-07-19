@@ -1,0 +1,128 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+    padding-top: 150px;
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+/* Custom styling */
+
+.tile {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    grid-template-columns: 1fr 2fr;
+    grid-template-areas: "pic name"
+                         "pic desc";
+        margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#park-index-image {
+    grid-area: pic;
+   
+}
+
+#park-index-image img {
+    width: 100%;
+    height: auto;
+}
+
+
+.index-name {
+    grid-area: name;
+    font-size: 24px;
+}
+
+.index-location {
+    grid-area: loc;
+}
+
+.index-description {
+    grid-area: desc;
+}
+
+.future-forecast-image {
+    width: 100px;
+}
+
+.weather {
+    display: inline-block;
+}
+.today-weather {
+    display: inline-block;
+    left: 0;
+}
+.future-forecast {
+    display: inline-block;
+    right: 0;
+}
+
+.future-forecast-detail {
+    display: inline-block;
+}
+
+#logo {
+    height: 100px;
+}
+
+#fave-parks {
+    margin: auto;
+}
+
+#fave-parks-table {
+    border-collapse: separate;
+    border-spacing: 50px 0;
+}
+
+.fave-park {
+    padding: 10px 0;
+}
+
+#park-info-box {
+    margin: 10px;
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    grid-template-columns: 1fr 2fr ;
+    grid-template-areas: "pic info " 
+}
+
+.park-info-image {
+    grid-area: pic;
+}
+
+.park-info-bullets {
+    grid-area: info;
+}

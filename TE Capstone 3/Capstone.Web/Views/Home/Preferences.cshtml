@@ -1,0 +1,15 @@
+﻿@model Preferences
+@{
+    ViewData["Title"] = "Preferences";
+}
+
+<h1>Preferences</h1>
+<form asp-action="Preferences" asp-controller="Home">
+    <label>Temperature Unit: </label>
+    <select asp-for="@Model.TemperatureUnit" >
+        <option value="Fahrenheit">Fahrenheit</option>
+        <option value="Celcius">Celcius</option>
+    </select>
+    <br />
+    <input type="submit" value="Save" />
+</form>

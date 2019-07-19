@@ -1,0 +1,28 @@
+6/7/2019 8:55:52 AM GIVE CHANGE:                $0.00     $0.00
+6/7/2019 8:57:49 AM FEED MONEY:                 $2.00     $2.00 
+6/7/2019 8:57:55 AM GIVE CHANGE:                $2.00     $0.00
+6/7/2019 9:03:33 AM FEED MONEY:                 $2.00     $2.00 
+6/7/2019 9:20:06 AM FEED MONEY:                 $5.00     $5.00 
+6/7/2019 9:20:15 AM Potato Crisps        A1     $5.00     $1.95 
+6/7/2019 9:20:19 AM GIVE CHANGE:                $1.95     $0.00
+6/7/2019 9:22:18 AM FEED MONEY:                 $5.00     $5.00 
+6/7/2019 9:22:22 AM Stackers             A2     $5.00     $3.55 
+6/7/2019 9:22:25 AM GIVE CHANGE:                $3.55     $0.00
+6/7/2019 3:43:06 PM FEED MONEY:                 $20.00    $20.00
+6/7/2019 3:43:23 PM Potato Crisps        A1     $20.00    $16.95
+6/7/2019 3:43:31 PM Potato Crisps        A1     $16.95    $13.90
+6/7/2019 3:43:34 PM Potato Crisps        A1     $13.90    $10.85
+6/7/2019 3:43:36 PM Potato Crisps        A1     $10.85    $7.80 
+6/7/2019 3:43:39 PM Potato Crisps        A1     $7.80     $4.75 
+6/7/2019 3:43:53 PM Little League Chew   D2     $4.75     $3.80 
+6/7/2019 3:44:04 PM Cloud Popcorn        A4     $3.80     $0.15 
+6/7/2019 3:44:18 PM GIVE CHANGE:                $0.15     $0.00
+6/7/2019 3:47:32 PM FEED MONEY:                 $10.00    $10.00
+6/7/2019 3:47:44 PM Little League Chew   D2     $10.00    $9.05 
+6/7/2019 3:47:56 PM Little League Chew   D2     $9.05     $8.10 
+6/7/2019 3:47:59 PM Little League Chew   D2     $8.10     $7.15 
+6/7/2019 3:48:01 PM Little League Chew   D2     $7.15     $6.20 
+6/7/2019 3:48:02 PM Little League Chew   D2     $6.20     $5.25 
+6/7/2019 3:48:15 PM Stackers             A2     $5.25     $3.80 
+6/7/2019 3:48:19 PM Grain Waves          A3     $3.80     $1.05 
+6/7/2019 3:48:25 PM GIVE CHANGE:                $1.05     $0.00
