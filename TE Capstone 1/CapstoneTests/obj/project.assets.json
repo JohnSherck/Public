@@ -5843,11 +5843,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\JSherck\\GIT\\c-module-1-capstone-team-5\\18_Capstone\\CapstoneTests\\CapstoneTests.csproj",
+      "projectUniqueName": "C:\\Users\\JSherck\\Desktop\\Public\\TE Capstone 1\\CapstoneTests\\CapstoneTests.csproj",
       "projectName": "CapstoneTests",
-      "projectPath": "C:\\Users\\JSherck\\GIT\\c-module-1-capstone-team-5\\18_Capstone\\CapstoneTests\\CapstoneTests.csproj",
+      "projectPath": "C:\\Users\\JSherck\\Desktop\\Public\\TE Capstone 1\\CapstoneTests\\CapstoneTests.csproj",
       "packagesPath": "C:\\Users\\JSherck\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\JSherck\\GIT\\c-module-1-capstone-team-5\\18_Capstone\\CapstoneTests\\obj\\",
+      "outputPath": "C:\\Users\\JSherck\\Desktop\\Public\\TE Capstone 1\\CapstoneTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -5866,8 +5866,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\Users\\JSherck\\GIT\\c-module-1-capstone-team-5\\18_Capstone\\Capstone\\Capstone.csproj": {
-              "projectPath": "C:\\Users\\JSherck\\GIT\\c-module-1-capstone-team-5\\18_Capstone\\Capstone\\Capstone.csproj"
+            "C:\\Users\\JSherck\\Desktop\\Public\\TE Capstone 1\\Capstone\\Capstone.csproj": {
+              "projectPath": "C:\\Users\\JSherck\\Desktop\\Public\\TE Capstone 1\\Capstone\\Capstone.csproj"
             }
           }
         }

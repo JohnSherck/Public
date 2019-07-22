@@ -1456,11 +1456,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\JSherck\\GIT\\c-module-2-capstone-team-8\\09_Capstone\\Capstone\\Capstone.csproj",
+      "projectUniqueName": "C:\\Users\\JSherck\\Desktop\\Public\\TE Capstone 2\\Capstone\\Capstone.csproj",
       "projectName": "Capstone",
-      "projectPath": "C:\\Users\\JSherck\\GIT\\c-module-2-capstone-team-8\\09_Capstone\\Capstone\\Capstone.csproj",
+      "projectPath": "C:\\Users\\JSherck\\Desktop\\Public\\TE Capstone 2\\Capstone\\Capstone.csproj",
       "packagesPath": "C:\\Users\\JSherck\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\JSherck\\GIT\\c-module-2-capstone-team-8\\09_Capstone\\Capstone\\obj\\",
+      "outputPath": "C:\\Users\\JSherck\\Desktop\\Public\\TE Capstone 2\\Capstone\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
