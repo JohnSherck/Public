@@ -1,0 +1,42 @@
+﻿@model UserFilmVM
+@{
+    ViewData["Title"] = "Home Page";
+    DateTime now = DateTime.Now;
+}
+<style>
+    .upcoming {
+        text-decoration: underline;
+        font-weight: bold;
+    }
+    .date {
+        color: darkred;
+    }
+</style>
+
+
+<h2 class="page-title">Featured Films</h2>
+<div class="Home-Page">
+    @foreach (Film films in Model.FilmList)
+    {
+        <div class="film-card">
+            <h4 class="display-4">@films.Title</h4>
+            @if (now <= films.startDate)
+            {
+            <p>🎬 <span class="upcoming">Upcoming:</span><span class="date"> @films.startDate.ToString("MM/dd/yyyy")</span> - <span class="date">@films.endDate.ToString("MM/dd/yyyy") 🍿</span></p>
+            }
+            else if (now >= films.startDate && now <= films.endDate)
+            {
+                <p>🎬 Running Until: <span class="date">@films.endDate.ToString("MM/dd/yyyy") 🍿</span></p>
+            }
+            <a asp-controller="Home" asp-action="Detail" asp-route-id="@films.Id">
+                <img class="card-img-top" src="@films.ImageLink" alt="@films.Title" />
+            </a>
+            <div>
+                <a asp-controller="Home" asp-action="Detail" asp-route-Id="@films.Id" class="btn btn-primary">More</a>
+                <a asp-controller="ShowTime" asp-action="Index" class="btn btn-danger">All Showings</a>
+            </div>
+            <p class="synopsis"> @films.Synopsis </p>
+        </div>
+    }
+
+</div>

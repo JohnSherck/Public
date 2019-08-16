@@ -1,0 +1,72 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using WebApplication.Web.DAL;
+using WebApplication.Web.Models;
+using WebApplication.Web.Providers.Auth;
+
+namespace WebApplication.Web.Controllers
+{
+    public class HomeController : Controller
+    {
+        private IFilmDAO filmDAO;
+        private IAuthProvider authProvider;
+
+        public HomeController(IFilmDAO filmDao, IAuthProvider authProvider)
+        {
+            this.filmDAO = filmDao;
+            this.authProvider = authProvider;
+        }
+
+        public IActionResult Index()
+        {
+            UserFilmVM vm = new UserFilmVM();
+            vm.CurrentUser = authProvider.GetCurrentUser();
+            vm.FilmList = filmDAO.GetAllFilms();
+            
+            return View(vm);
+        }
+
+        public IActionResult Detail(int id)
+        {
+            FilmUserVM vm = new FilmUserVM();
+            vm.Film = filmDAO.GetFilmByID(id);
+            vm.User = authProvider.GetCurrentUser();
+            return View(vm);
+        }
+        public IActionResult Showtimes()
+        {
+            List<ShowTime> allTimes = new List<ShowTime>();
+            //allTimes = 
+            return View(allTimes);
+        }
+
+        public IActionResult About()
+        {
+            ViewData["Message"] = "Your application description page.";
+
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            ViewData["Message"] = "Your contact page.";
+
+            return View();
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+    }
+}

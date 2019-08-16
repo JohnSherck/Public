@@ -1,0 +1,451 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+
+/* Changes to the navbar coloring */
+.navbar {
+    background-color: darkred;
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+
+footer {
+    color: darkred;
+}
+
+hr {
+    border-color: darkred;
+}
+
+.parent {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.Home-Page {
+    display: flex;
+    flex-direction: column;
+}
+
+h2.page-title {
+    text-align: center;
+    text-decoration: underline;
+}
+
+div.film-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightgray;
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    border: solid 1px #ff2400;
+    border-radius: 2%;
+}
+
+img.card-img-top {
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+
+/*Detail page*/
+detail-body {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas: "pic" "info" "showtimes";
+    grid-gap: 10px;
+}
+
+.film-image {
+    grid-area: pic;
+}
+
+    .film-image > img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 40%;
+    }
+
+.film-info-bullets {
+    grid-area: info;
+}
+
+.show-times {
+    grid-area: showtimes;
+}
+
+.show-times > h4 {
+    display: inline;
+    font-weight: bold;
+}
+
+.film-info-bullets > form {
+    margin: 0px;
+    padding: 0px;
+}
+input.btn.account-btn.btn-primary.btn-block {
+    margin: 0px;
+    padding: 0px;
+}
+
+button.sht-but {
+    background-color: #ff2400;
+    border-radius: 3px;
+    color: #D3D3D3;
+    text-align: center;
+    display: inline-block;
+}
+
+.film-image > img {
+    max-width: 100%;
+    height: auto;
+}
+
+.detail-synopsis {
+    font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;
+    font-size: 24px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 700;
+    line-height: 26.4px;
+}
+
+button.disabled-button {
+    background-color: gray;
+    color: black;
+    border-color: black;
+    pointer-events: none;
+    cursor: default;
+}
+
+.disabled-link {
+    pointer-events: none;
+    cursor: default;
+}
+
+
+
+
+/*styling for login and register*/
+.global-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    padding-top: 10px;
+    font-size: 14px;
+    margin-top: 30px;
+}
+
+.card-title {
+    font-weight: 300;
+}
+
+.account-btn {
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.login-form {
+    width: 330px;
+    margin: 20px;
+}
+
+div.synopsis {
+    grid-area: synopsis;
+}
+/* Hide captions */
+.carousel-caption {
+    display: none;
+}
+
+.synopsis {
+    display: none;
+}
+
+#current-date {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-weight: bold;
+    font-size: 2.5rem;
+    padding: 1rem;
+}
+
+#last-day {
+    border-color: #ff2400;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+#next-day {
+    border-color: #ff2400;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+
+
+/*Seatmap*/
+
+.seatsPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.seatLegend{
+    border: 1px solid black;
+    padding: .5em;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 200px;
+
+}
+.seatLegend .btn{
+    width: auto;
+}
+#seatMap{
+    /* padding: 3em; */
+    width: 700px;
+}
+#seatMap td{
+    padding: .5em;
+}
+.seat{
+    text-align: center;
+    width: 40px;
+
+}
+.btn.selectedSeat, .btn.selectedSeat:active{
+    background-color: green;
+
+}
+.reservedSeat, .reservedSeat:active{
+    background-color: lightgrey;
+    color:black;
+    opacity: .65;
+}
+#movie-screen {
+    color: white;
+    background-color: black;
+    border: none;
+    width: 75%;
+    margin-bottom: 1rem;
+}
+#exit1 {
+    color: white;
+    background-color: red;
+    border: none;
+    display: none;
+}
+#exit2 {
+    color: white;
+    background-color: red;
+    border: none;
+    margin-left: auto;
+    margin-right:auto;
+}
+div.exit-div {
+    margin-top: 1rem;
+}
+input.children-field {
+    margin-left: 0%;
+}
+
+input.adult-field {
+    margin-left: 0%;
+}
+div.film-card {
+    margin: 0rem;
+    margin-top: 1rem;
+}
+
+div.edit-field {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+div.show-times {
+    text-align: center;
+}
+div.film-info-bullets {
+    text-align: center;
+}
+
+
+/* Media Queries */
+/* All CSS for Tablet Size*/
+@media screen and (min-width: 768px) {
+    .Home-Page {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    div.film-card {
+        margin: 0rem;
+        margin-top: 1rem;
+    }
+    input.children-field {
+        margin-left: 9%;
+    }
+
+    input.adult-field {
+        margin-left: 20%;
+    }
+    p#current-date {
+        font-size: 2rem;
+        padding: 1rem;
+    }
+
+    div.film-card {
+        width: 47%;
+    }
+}
+
+/* All CSS for Desktop Size */
+@media (min-width: 1024px) {
+    div.film-card {
+        width: 31%;
+    }
+    div.film-info-bullets {
+        text-align: left;
+    }
+    /* larger screens (dekstop)*/
+    p#current-date {
+        font-size: 4.5rem;
+        padding: 0.3rem;
+    }
+    #edit-button {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    div.edit-field {
+        padding: 1rem;
+        margin-left: 30%;
+    }
+
+    div.film-card {
+        margin: 1.3rem;
+    }
+
+    input.children-field {
+        margin-left: 9%;
+    }
+
+    input.adult-field {
+        margin-left: 20%;
+    }
+
+    img.card-img-top {
+        height: 400px;
+        width: auto;
+        margin-bottom: 1em;
+    }
+
+    #film-detail-box {
+        margin: 10px;
+        display: grid;
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas: "pic info "
+    }
+
+    #last-day {
+        border-color: #ff2400;
+        font-size: 5rem;
+    }
+
+    #next-day {
+        border-color: #ff2400;
+        font-size: 5rem;
+    }
+
+    #movie-screen {
+        color: white;
+        background-color: black;
+        width: 70%;
+        pointer-events: none;
+        margin-bottom: 1.5rem;
+        border: none;
+    }
+
+    #exit1 {
+        color: white;
+        background-color: red;
+        pointer-events: none;
+        text-align: center;
+        margin-top: 2rem;
+        margin-right: 50%;
+        padding-left: 3rem;
+        padding-right: 3rem;
+        border: none;
+        display: inline;
+    }
+
+    #exit2 {
+        color: white;
+        background-color: red;
+        pointer-events: none;
+        text-align: center;
+        margin-top: 2rem;
+        margin-left: 50%;
+        padding-left: 3rem;
+        padding-right: 3rem;
+        border: none;
+    }
+
+    div.exit-div {
+        display: flex;
+        justify-content: center;
+    }
+
+    #checkout-button {
+        font-size: 2rem;
+        padding: 10px;
+    }
+}

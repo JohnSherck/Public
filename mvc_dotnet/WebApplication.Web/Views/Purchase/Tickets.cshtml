@@ -1,0 +1,65 @@
+﻿@model PurchaseFlowVM
+@{
+    ViewData["Title"] = "Tickets";
+    int avaliableSeats = 100 - Model.ClosedSeats.Count;
+}
+
+<script src="~/js/TicketCounter.js"></script>
+
+<h2>Select Your Tickets</h2>
+
+@*<h3>You have selected <span id="total">@Model.ChosenSeats.Count</span> tickets.</h3>*@
+<h3>Please indicate which types of tickets to purchase:</h3>
+<p>There are only <span id="remaining-tickets">@avaliableSeats</span> seats remaining.</p>
+<div class="global-container">
+    <div class="card login-form">
+        <div class="card-body">
+            <h3 class="card-title text-center">Selection</h3>
+            <div class="card-text">
+                <form asp-controller="Purchase" asp-action="Seats" method="post">
+                    <div class="form-group">
+                        <label asp-for="RegularSeats" id="Regular Price">Adult Seats</label>
+                        <input asp-for="RegularSeats" class="adult-field input-field" />
+                        @Model.RegularTicketPrice.ToString("C")
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="KidsSeats" id="KidsSeats">Kids Seats (< 10)</label>
+                        <input asp-for="KidsSeats" class="children-field input-field" />
+                        @Model.KidsTicketPrice.ToString("C")
+
+                        @*@(((Decimal).6 * Model.RegularTicketPrice).ToString("C"))*@
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SeniorSeats" id="SeniorSeats">Senior Citizens (> 55)</label>
+                        <input asp-for="SeniorSeats" class="senior-field input-field" />
+                        @Model.SeniorTicketPrice.ToString("C")
+                        @*@(((Decimal).9 * Model.RegularTicketPrice).ToString("C"))*@
+                    </div>
+                    @*<div class="form-group">
+                    <label asp-for="KidsSeats" id="KidsSeats">Children (under 10)</label>
+                    <select name="KidsSeats" id="KidsSeats">
+                        @for (int i = 0; i <= Model.ChosenSeats.Count; i++)
+                        {
+                            <option value=i>{i}</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SeniorSeats" id="SeniorSeats">Senior Citizens (55 and older)</label>
+                    <select name="SeniorSeats" id="SeniorSeats">
+                        @for (int i = 0; i <= Model.ChosenSeats.Count; i++)
+                        {
+                            <option value=i>{i}</option>
+                        }
+                    </select>*@
+            </div>
+            <input type="hidden" asp-for="MovieDate" />
+            <input type="hidden" asp-for="ShowTimeID" />
+            <input type="hidden" asp-for="ClosedSeats" />
+            <input type="submit" value="Tickets" asp-route- class="btn account-btn btn-primary btn-block" />
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,47 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Profile</h2>
+
+<p>Welcome @Model.Username</p>
+<div class="card-body">
+    <div class="card-text">
+        <div class="billing-info">
+            <h2>Saved Billing Information</h2>
+
+            <form method="post" asp-controller="Account">               
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" name="firstName" value="@Model.FirstName" class="form-control form-control-sm" />
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" name="lastName" value="@Model.LastName" class="form-control form-control-sm" />
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" name="address" value="@Model.Address" class="form-control form-control-sm" />
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" name="city" value="@Model.City" class="form-control form-control-sm" />
+                    </div>
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input type="text" name="state" value="@Model.State" class="form-control form-control-sm" />
+                    </div>
+                    <div class="form-group">
+                        <label for="zip">Zip Code</label>
+                        <input type="text" name="zip" value="@Model.Zip" class="form-control form-control-sm" />
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" name="email" value="@Model.Email" class="form-control form-control-sm" />
+                    </div>
+                <input type="submit" value="save" class="btn account-btn btn-primary btn-block" />
+            </form>         
+        </div>
+    </div>
+</div>

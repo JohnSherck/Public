@@ -1,0 +1,30 @@
+﻿@model User
+@{
+    ViewData["Title"] = "_Navbar";
+}
+
+
+
+@if (Model == null)
+{
+    <li><a asp-area="" asp-controller="Account" asp-action="Register">Register</a></li>
+    <li><a asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+}
+else
+{
+    if (Model.Role == "admin")
+    {
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Admin
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a asp-area="" asp-controller="Admin" asp-action="AddNewFilm">Add Film</a></li>
+        </ul>
+    </li>
+        //<li><a asp-area="" asp-controller="Admin" asp-action="AddNewFilm">Add Film</a></li>
+    }
+    <li><a asp-area="" asp-controller="Account" asp-action="Index">Welcome @Model.Username</a></li>
+    <li><a asp-area="" asp-controller="Account" asp-action="Logoff">Logout</a></li>
+}

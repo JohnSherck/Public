@@ -1,0 +1,99 @@
+﻿@model FilmUserVM
+@{
+    ViewData["Title"] = "Detail";
+    DateTime day = DateTime.Now;
+}
+
+<script src="~/js/CheckDate.js"></script>
+
+
+<h2>@Model.Film.Title</h2>
+@{
+    // Within the film model, the cast is a list of strings. Here, we convert that list to a comma-separeted list as a string
+    string cast = "";
+    // Make sure there's content in the list
+    if (Model.Film.Actors.Count > 0)
+    {
+        foreach (string actor in Model.Film.Actors)
+        {
+            cast += ", ";
+            cast += actor;
+        }
+        cast = cast.Substring(2);
+
+    }
+}
+@{
+    // Within the film model, the genre field is a list of strings. Here, we convert that list to a comma-separeted list as a string
+
+    string displayGenres = "";
+    //Make sure there's content in the list
+    if (Model.Film.Genre.Count > 0)
+    {
+        foreach (string genre in Model.Film.Genre)
+        {
+            displayGenres += ", ";
+            displayGenres += genre;
+        }
+        displayGenres = displayGenres.Substring(2);
+    }
+}
+<div class="detail-body">
+    <div id="film-detail-box">
+        <div class="film-image">
+            <img src="@Model.Film.ImageLink" />
+        </div>
+        <div class="film-info-bullets">
+            <div class="detail-synopsis">@Model.Film.Synopsis</div>
+            @if (cast != "")
+            {
+                <div><b>Starring:</b> @cast</div>
+
+            }
+            @if (Model.Film.Rating != null)
+            {
+                <div><b>Rating:</b> @Model.Film.Rating</div>
+            }
+            <div><b>Length:</b> @Model.Film.RunTime minutes</div>
+            @if (displayGenres != "")
+            {
+                <div><b>Genre:</b> @displayGenres</div>
+            }
+            @if (Model.Film.Director != null)
+            {
+                <div><b>Directed by:</b> @Model.Film.Director</div>
+            }
+            @if (Model.Film.LinkToSite != null)
+            {
+                <div><a href="@Model.Film.LinkToSite"><b>Official site for @Model.Film.Title</b></a></div>
+            }
+            @if (Model.Film.ReleaseDate != null)
+            {
+                <div><b>Release Date:</b> @Model.Film.ReleaseDate.ToString("MM/dd/yyyy")</div>
+            }
+            <div class="show-times">
+                <hr />
+                <h4>Showings:</h4>
+                @foreach (ShowTime time in Model.Film.Showings)
+                {
+                    DateTime result = new DateTime();
+                    result = day.Add(time.Showtime);
+                    string displayShowtime = time.Showtime.ToString(@"hh\:mm");
+                    <a asp-controller="Purchase" asp-action="Tickets" asp-route-showTimeID="@time.Id" asp-route-MovieDate="@result">
+                        <button class="sht-but time-button">@displayShowtime</button>
+                    </a>
+                }
+            </div>
+            <div class="edit-field">
+                @if (Model.User != null)
+                {
+                    if (Model.User.Role == "Admin" || Model.User.Role == "admin")
+                    {
+                        <a asp-controller="Admin" asp-action="EditFilm" asp-route-Id="@Model.Film.Id" class="danger btn btn-primary button-centered settings-button" id="edit-button">Edit This Film</a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,75 @@
+﻿@model Film
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@{ string cast = "";
+    if (Model.Actors.Count > 0)
+    {
+        foreach (string actor in Model.Actors)
+        {
+            cast += ", ";
+            cast += actor;
+        }
+        cast = cast.Substring(2);
+    }
+}
+@{ string displayGenres = "";
+    if(Model.Genre.Count > 0)
+    {
+        foreach (string genre in Model.Genre)
+        {
+            displayGenres += ", ";
+            displayGenres += genre;
+        }
+        displayGenres = displayGenres.Substring(2);
+    }
+}
+<div class="detail-body">
+    <div id="film-detail-box">
+        <div class="film-image">
+            <img src="@Model.ImageLink" />
+        </div>
+        <div class="film-info-bullets">
+            <div class="detail-synopsis">@Model.Synopsis</div>
+            @if (cast != "")
+            {
+                <div><b>Starring:</b> @cast</div>
+
+            }
+            @if (Model.Rating != null)
+            {
+                <div><b>Rating:</b> @Model.Rating</div>
+            }
+            <div><b>Length:</b> @Model.RunTime minutes</div>
+            @if (displayGenres != "")
+            {
+                <div><b>Genre:</b> @displayGenres</div>
+            }
+            @if (Model.Director != null)
+            {
+                <div><b>Directed by:</b> @Model.Director</div>
+            }
+            @if (Model.LinkToSite != null)
+            {
+                <div><a href="@Model.LinkToSite"><b>Official site for @Model.Title</b></a></div>
+            }
+            @if (Model.ReleaseDate != null)
+            {
+                <div><b>Release Date:</b> @Model.ReleaseDate.ToString("MM/dd/yyyy")</div>
+            }
+            <h3>Next Opening in Rotation</h3>
+            <p><strong>Start Date:</strong> @Model.startDate.ToString("MM/dd/yyyy") | <strong>End Date:</strong> @Model.endDate.ToString("MM/dd/yyyy") | <strong>Showing on</strong> Screen #@Model.ScreenId</p>
+            <hr />
+            <form method="POST" asp-controller="admin" asp-action="newfilm">
+                <input hidden asp-for="Id" />
+                <button class="sht-but time-button" type="submit">Add Film to Rotation</button>
+            </form>
+                
+                    
+                
+
+            
+        </div>
+    </div>
+</div>

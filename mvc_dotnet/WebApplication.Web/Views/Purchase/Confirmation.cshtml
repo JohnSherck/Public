@@ -1,0 +1,74 @@
+﻿@model ReservationConfirmationVM
+@{
+    ViewData["Title"] = "Confirmation";
+    decimal tax = Model.Total * (decimal).07;
+    decimal total = Model.Total + tax;
+}
+
+<style>
+    #confirmation-num {
+        font-weight: bold;
+        text-decoration: underline;
+        font-size: 125%;
+    }
+
+    .table-heading {
+        text-align: center;
+        padding: 1rem;
+    }
+
+    h2.heading {
+        text-align: center;
+        text-decoration: underline;
+        font-size: 4rem;
+    }
+
+    h3.content {
+        text-align: center;
+        font-size: 2rem;
+    }
+
+    p.small-print {
+        font-size: 1.3rem;
+        text-align: center;
+        color: darkgray;
+    }
+</style>
+<h2 class="heading">Invoice</h2>
+<h3 class="content">Your order was successfully placed, your confirmation # is: <span id="confirmation-num">@Model.ConfirmationNumber</span></h3>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <td class="table-heading">Seat:</td>
+            @*<td class="table-heading">Price:</td>*@
+            <td class="table-heading">Film:</td>
+            <td class="table-heading">Showing Date:</td>
+            <td class="table-heading">Total:</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Reservation reservation in Model.Reservations)
+        {
+            <tr>
+                <td class="table-heading">@reservation.SeatID</td>
+                <td class="table-heading">@Model.FilmName</td>
+                <td class="table-heading">@reservation.Date.ToString("MM/dd/yyyy")</td>
+                <td class="table-heading">-</td>
+            </tr>
+        }
+        <tr>
+            <td class="table-heading">-</td>
+            <td class="table-heading">-</td>
+            <td class="table-heading">-</td>
+            <td class="table-heading">-</td>
+        </tr>
+        <tr>
+            <td class="table-heading">Kids Seats: @Model.KidsSeats (@Model.KidsTicketPrice.ToString("C"))</td>
+            <td class="table-heading">Adult Seats: @Model.RegularSeats (@Model.TicketPrice.ToString("C"))</td>
+            <td class="table-heading">Senior Seats: @Model.SeniorSeats (@Model.SeniorTicketPrice.ToString("C"))</td>
+            <td class="table-heading">@total.ToString("C")</td>
+        </tr>
+    </tbody>
+</table>
+<p class="small-print">You can print this page to use as a receipt (ctrl + P)</p>
+

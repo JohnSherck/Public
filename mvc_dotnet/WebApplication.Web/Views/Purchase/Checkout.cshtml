@@ -1,0 +1,122 @@
+﻿@model PurchaseFlowVM
+@{
+    ViewData["Title"] = "Checkout";
+    // Set discount rates for Children and Senior Citizens
+    //decimal kidsDiscount = (decimal)0.60;
+    //decimal seniorDiscount = (decimal)0.90;
+
+    //// Set ticket prices based off the regular ticket price for the selected showing
+    //decimal priceOfRegularTickets = Model.RegularTicketPrice;
+    //decimal priceOfKidsTickets = Model.RegularTicketPrice * kidsDiscount;
+    //decimal priceOfSeniorTickets = Model.RegularTicketPrice * seniorDiscount;
+
+    // Calculate the subtotals for each type of ticket, to be displayed below
+    decimal totalCostOfRegularTickets = Model.RegularTicketPrice * Model.RegularSeats;
+    decimal totalCostOfKidsTickets = Model.KidsTicketPrice * Model.KidsSeats;
+    decimal totalCostOfSeniorTickets = Model.SeniorTicketPrice * Model.SeniorSeats;
+}
+<form asp-controller="Purchase" asp-action="Checkout" method="post">
+    <h2>Checkout</h2>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Ticket type</th>
+                <th>Quantity</th>
+                <th>Price per</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Regular tickets</td>
+                <td>@Model.RegularSeats</td>
+                <td>@(Model.RegularTicketPrice.ToString("C"))</td>
+                <td>@(totalCostOfRegularTickets.ToString("C"))</td>
+            </tr>
+            <tr>
+                <td>Children's tickets</td>
+                <td>@Model.KidsSeats</td>
+                <td>@(Model.KidsTicketPrice.ToString("C"))</td>
+                <td>@((totalCostOfKidsTickets).ToString("C"))</td>
+            </tr>
+            <tr>
+                <td>Senior Citizen's tickets</td>
+                <td>@Model.SeniorSeats</td>
+                <td>@(Model.SeniorTicketPrice.ToString("C"))</td>
+                <td>@((totalCostOfSeniorTickets).ToString("C"))</td>
+            </tr>
+            <tr>
+                <td>Cuyahoga County tax (7%)</td>
+                <td></td>
+                <td></td>
+                <td>@(((decimal)0.07 * (totalCostOfKidsTickets + totalCostOfRegularTickets + totalCostOfSeniorTickets)).ToString("C"))</td>
+            </tr>
+            <tr>
+                <td>Grand Total</td>
+                <td></td>
+                <td></td>
+                <td>@(((decimal)1.07 * (totalCostOfKidsTickets + totalCostOfRegularTickets + totalCostOfSeniorTickets)).ToString("C"))</td>
+            </tr>
+            <tr>
+                @{
+                    string ticketListString = "";
+                    if (Model.ChosenSeats.Count == 0)
+                    {
+                        Model.ChosenSeats.Add(1);
+                        Model.ChosenSeats.Add(2);
+                        Model.ChosenSeats.Add(3);
+                    }
+                    foreach (int ticket in Model.ChosenSeats)
+                    {
+                        ticketListString += ", ";
+                        ticketListString += ticket;
+                    }
+                    ticketListString = ticketListString.Substring(2);
+                }
+                <td>You selected the following tickets: @ticketListString</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="billing-info">
+        <h2>Please enter payment information</h2>
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" name="firstName" value="@Model.CurrentUser.FirstName" class="form-control form-control-sm" />
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName" value="@Model.CurrentUser.LastName" class="form-control form-control-sm" />
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" name="address" value="@Model.CurrentUser.Address" class="form-control form-control-sm" />
+        </div>
+        <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" name="city" value="@Model.CurrentUser.City" class="form-control form-control-sm" />
+        </div>
+        <div class="form-group">
+            <label for="state">State</label>
+            <input type="text" name="state" value="@Model.CurrentUser.State" class="form-control form-control-sm" />
+        </div>
+        <div class="form-group">
+            <label for="zip">Zip Code</label>
+            <input type="text" name="zip" value="@Model.CurrentUser.Zip" class="form-control form-control-sm" />
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" value="@Model.CurrentUser.Email" class="form-control form-control-sm" />
+        </div>
+        <input type="hidden" asp-for="ShowTimeID" />
+        <input type="hidden" asp-for="RegularTicketPrice" />
+        <input type="hidden" asp-for="RegularSeats" />
+        <input type="hidden" asp-for="KidsSeats" />
+        <input type="hidden" asp-for="SeniorSeats" />
+
+        <input type="hidden" asp-for="MovieDate" />
+        <input type="hidden" asp-for="ChosenSeatsAsString" />
+        <input type="hidden" asp-for="FilmName" />
+        <input type="submit" value="Purchase" class="btn account-btn btn-primary btn-block" />
+    </div>
+
+</form>

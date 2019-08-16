@@ -1,0 +1,78 @@
+﻿@model Film
+@{
+    ViewData["Title"] = $"Edit {Model.Title}";
+}
+<style>
+    td.table-data {
+        padding: .3rem;
+        text-align: center;
+    }
+
+    h2.heading {
+        text-decoration: underline;
+        text-align: center;
+    }
+    table.table-centered {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #save-button {
+        width: 100%
+    }
+    .centered {
+        text-align: center;
+    }
+
+</style>
+
+<div class="super-div">
+    <h2 class="heading">Edit Film</h2>
+    <form asp-controller="Admin" asp-action="EditFilm" method="post">
+        <div class="info">
+            <table class="table-centered">
+                <tbody>
+                    <tr>
+                        <td class="table-data"><label asp-for="Title">Film's Title: </label></td>
+                        <td class="table-data"><input asp-for="Title" class="centered"/></td>
+                    </tr>
+                    <tr>
+                        <td class="table-data"><label asp-for="Synopsis">Synopsis: </label></td>
+                        <td class="table-data"><textarea asp-for="Synopsis" cols="80" rows="5" class="centered"></textarea></td>
+                        @*<td class="table-data"><input asp-for="Synopsis" /></td>*@
+                    </tr>
+                    <tr>
+                        <td class="table-data"><label asp-for="ReleaseDate">Release Date: </label></td>
+                        <td class="table-data"><input asp-for="ReleaseDate" class="centered"/></td>
+                    </tr>
+                    <tr>
+                        <td class="table-data"><label asp-for="Rating">Rating: </label></td>
+                        <td class="table-data"><input asp-for="Rating" class="centered"/></td>
+                    </tr>
+                    <tr>
+                        <td class="table-data"><label asp-for="RunTime">Length: </label></td>
+                        <td class="table-data"><input asp-for="RunTime" class="centered"/></td>
+                    </tr>
+                    <tr>
+                        <td class="table-data"><label asp-for="LinkToSite">Official Site: </label></td>
+                        <td class="table-data"><textarea asp-for="LinkToSite" cols="40" rows="1" class="centered"></textarea></td>
+                        @*<td class="table-data"><input asp-for="LinkToSite" /></td>*@
+                    </tr>
+                    <tr>
+                        <td class="table-data"><label asp-for="ImageLink">Image Link: </label></td>
+                        <td class="table-data"><textarea asp-for="ImageLink" cols="30" rows="1" class="centered"></textarea></td>
+                        @*<td class="table-data"><input asp-for="ImageLink" /></td>*@
+                    </tr>
+                    <tr>
+                        <td class="table-data"><label asp-for="startDate">Start Date (Run): </label></td>
+                        <td class="table-data"><input asp-for="startDate" class="centered" /></td>
+                    </tr>
+                    <tr>
+                        <td class="table-data"><label asp-for="endDate">End Date (Run): </label></td>
+                        <td class="table-data"><input asp-for="endDate" class="centered"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button type="submit" value="Save Changes" class="btn account-btn btn-primary" id="save-button">Save Changes</button>
+    </form>
+</div>

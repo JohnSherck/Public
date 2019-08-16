@@ -1,0 +1,48 @@
+﻿@model PurchaseFlowVM
+@using Newtonsoft;
+@using Newtonsoft.Json;
+@{
+    //dummy data
+    ViewData["Title"] = "Select Seats";
+    
+    int maxSeats = Model.SeniorSeats + Model.RegularSeats + Model.KidsSeats;
+}
+
+<script src="~/js/selectSeats.js">
+</script>
+
+<script>
+    setClosedSeats(@JsonConvert.SerializeObject(Model.ClosedSeats));
+    setMaxSeats(@JsonConvert.SerializeObject(maxSeats));
+</script>
+
+<style>   
+</style>
+
+<div class="seatsPage">
+    <h2 class="page-title">Seat Selection</h2>
+
+    <div class="seatLegend">
+        <input type="button" class="btn btn-primary seat" value="Available">
+        <input type="button" class="btn btn-primary seat reservedSeat" disabled value="Unavailable">
+        <input type="button" class="btn btn-primary seat selectedSeat" value="Selected">
+    </div>
+
+    <p class="lead">Please Select @(Model.SeniorSeats + Model.RegularSeats + Model.KidsSeats) Seats</p>
+    <button type="button" class="block" id="movie-screen">Movie Screen</button>
+    <table id="seatMap" cellpadding="10"></table>
+    <div class="exit-div">
+        <button type="button" class="block exit" id="exit1">Exit</button>
+        <button type="button" class="block exit" id="exit2">Exit</button>
+    </div>
+    <form asp-controller="Purchase" asp-action="Checkout" method="get">
+        <input type="hidden" asp-for="RegularSeats" />
+        <input type="hidden" asp-for="KidsSeats" />
+        <input type="hidden" asp-for="SeniorSeats" />
+
+        <input type="hidden" asp-for="MovieDate" />
+        <input type="hidden" asp-for="ShowTimeID" />
+        <input type="hidden" asp-for="ChosenSeatsAsString" />
+        <input type="submit" value="Checkout" class="btn account-btn btn-primary btn-block" id="checkout-button"/>
+    </form>
+</div>

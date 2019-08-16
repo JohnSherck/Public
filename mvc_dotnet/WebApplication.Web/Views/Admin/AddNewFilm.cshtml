@@ -1,0 +1,27 @@
+﻿@model List<Film>
+@{
+    ViewData["Title"] = "AddNewFilm";
+}
+
+<h2>Add A New Film</h2>
+
+
+@foreach (Film film in Model)
+{    
+    <div class="detail-body">
+        <div id="film-detail-box">
+            <div class="film-image">
+                <img src="@film.ImageLink" />
+            </div>
+            <div class="film-info-bullets">
+                <div class="detail-synopsis">@film.Synopsis</div>
+                <div><b>Release Date:</b> @film.ReleaseDate.ToString("MM/dd/yyyy")</div>
+          
+                <form asp-controller="Admin" asp-action="AddNewFilm" method="post">
+                    <input type="hidden" name="Id" value="@film.Id" />
+                    <input type="submit" value="Add @film.Title" class="btn account-btn btn-primary btn-block" />
+                </form>
+                </div>
+            </div>
+    </div>
+}

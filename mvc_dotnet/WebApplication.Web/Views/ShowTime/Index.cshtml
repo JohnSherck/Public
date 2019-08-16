@@ -1,0 +1,167 @@
+﻿@model UserFilmVM
+@{
+    ViewData["Title"] = "Showtimes";
+}
+<style>
+    a.button-centered {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1rem;
+    }
+
+    img.show-time-card {
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+
+    h4.heading {
+        text-decoration: underline;
+        font-weight: bold;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    p.heading {
+        text-decoration: underline;
+        text-align: center;
+    }
+
+    div.show-times {
+        align-self: center;
+    }
+
+    div.film-info-container {
+        display: flex;
+    }
+
+    button.desktop-button {
+        display: inline;
+        width: 100%;
+    }
+
+    div.film-link-home {
+        width: 100%;
+        text-align: center;
+    }
+
+    img.film-image-home {
+        resize: 50%;
+    }
+
+    div.film-card-showtimes {
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+        grid-template-areas: "pic title" "pic showhead" "pic showtimes" "btn  btn";
+    }
+
+    img.showtime-image {
+        grid-area: pic;
+    }
+
+    h4.film-heading {
+        grid-area: title;
+    }
+
+    p.show-heading {
+        grid-area: showhead;
+    }
+
+    button.desktop-button {
+        grid-area: btn;
+    }
+
+    div.show-times {
+        grid-area: showtimes;
+    }
+
+
+    div.view-showtime-selection {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: "title title title" "prev date next";
+        text-align: center;
+        padding: 1rem;
+    }
+
+    #last-day {
+        grid-area: prev;
+    }
+
+    #next-day {
+        grid-area: next;
+    }
+
+    #day-of-week {
+        grid-area: date;
+    }
+
+    h2.showtime-heading {
+        grid-area: title;
+        text-decoration: underline;
+    }
+
+    button.disabled-button {
+        background-color: gray;
+        color: black;
+        border-color: black;
+        display: none;
+    }
+    #edit-button {
+    margin-left: 90%;
+    }
+    footer {
+        display: none;
+    }
+</style>
+@{
+    DateTime selectedDay = DateTime.Now;
+    TimeSpan currentTimeStamp = selectedDay.TimeOfDay;
+}
+
+
+<script src="~/js/DateSelection.js">
+</script>
+
+<div class="view-showtime-selection">
+    <h2 class="table-head showtime-heading">Showtimes For:</h2>
+    <button id="last-day">&#8249</button>
+    <p id="current-date">@selectedDay.ToString("M/d/yyyy")</p>
+    <button id="next-day">&#8250</button>
+</div>
+<div class="Home-Page">
+
+    @foreach (Film film in Model.FilmList)
+    {
+    <div class="film-card">
+        <input type="hidden" value="@film.startDate" name="startDate" class="start-date" id="@film.Title" />
+        <input type="hidden" value="@film.endDate" name="endDate" class="end-date" id="@film.Title" />
+        <img class="card-img-top show-time-card" src="@film.ImageLink" alt="@film.Title" />
+        <h4 class="heading film-heading">@film.Title</h4>
+        <p class="heading show-heading">Showings:</p>
+        <div class="film-link-home">
+            @foreach (ShowTime showtime in film.Showings)
+            {
+                string hour = showtime.Showtime.ToString().Substring(0, 2);
+                string minutes = showtime.Showtime.ToString().Substring(3, 2);
+                DateTime result = DateTime.Now;
+                TimeSpan movieTime = new TimeSpan(int.Parse(hour), int.Parse(minutes), 0);
+                result = result.Date + movieTime;
+                string displayShowtime = showtime.Showtime.ToString(@"hh\:mm");
+                <a asp-controller="Purchase" asp-action="Tickets" asp-route-showTimeID="@showtime.Id" asp-route-MovieDate="@result">
+                    <button class="sht-but time-button">@displayShowtime</button>
+                </a>
+
+            }
+        </div>
+        <a asp-controller="Home" asp-action="Detail" asp-route-Id="@film.Id" class="btn btn-primary button-centered desktop-button">View More Details</a>
+        @if(Model.CurrentUser != null)
+        {
+            if(Model.CurrentUser.Role == "Admin" || Model.CurrentUser.Role == "admin")
+            {
+                <a asp-controller="Admin" asp-action="EditFilm" asp-route-Id="@film.Id" class="danger btn btn-primary button-centered settings-button" id="edit-button">⚙</a>
+            }
+        }
+    </div>
+       // }
+    }
